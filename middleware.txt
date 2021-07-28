@@ -1,0 +1,19 @@
+middleware는 중간에 있는 소프트웨어라는 뜻으로
+브라우저ㅏ 뭔가를 request하면, 서버는 거기에 응답을 해준다
+
+=>middleware는 request와 response 사이에 있다.
+=>모든 handler는 middleware이과 모든 middleware는 handler이다.
+- 이제 handler라는 용어대신 controller라는 용어사용
+
+controller에는 두개의 argument말고(req,res) 한개가 더 있는데 next라는 argument가 있다.
+next argument는 다음 함수를 호출해줌
+
+app.get("/", gossipMiddleware, (req, res) => {
+  //return res.end(); //request를 종료하는 방법중에 하나
+  return res.send("hi");
+});
+
+브라우저가 홈페이지를 get하려하고 express가 Middleware 호출 => console.log실행
+=> 다음 함수 실행
+
+=> 모든 controller가 middleware가 될 수 있음
