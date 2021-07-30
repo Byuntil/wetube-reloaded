@@ -4,9 +4,14 @@ import globalRouter from "./routers/globlaRouter";
 import userRouter from "./routers/userRouter";
 import videoRouter from "./routers/videoRouter";
 
-const PORT = 5000;
+const PORT = 10000;
 const app = express();
 const logger = morgan("dev");
+app.set("view engine", "pug");
+//console.log(process.cwd()); // =>nodejs를 시작하는 곧이 current working directory임
+//express는 view를 찾을 때 현재 작업 디렉토리 + /view로 찾기 때문에 우리가 원하는 src/view/home을 찾지 못함
+//그래서 해결책 👇🏻
+app.set("views", process.cwd() + "/src/views");
 app.use(logger);
 
 app.use("/", globalRouter);
